@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+/* --------- reset --------------------------- */
+body{
+	margin:0px;
+}
+
+h1{
+	margin: 0px;
+}
+
+ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+li{
+	display: block;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+/* --------- abstract style --------------------------- */
+
+
+/* ---------- component ---------------------------- */
+
+.btn{
+	
+}
+
+.btn-default{
+	color: #ffffff;
+	background: #759d2a;
+	min-width: 71px;
+	display: inline-block;
+	text-align: center;
+	padding: 3px 8px;
+	border-radius: 4px;
+}
+
+.btn-warning{
+	
+}
+
+.btn-cancel{
+	
+}
+
+/* ---------------------------------------------------- */
+
+.hor-menu{
+	display: inline-block;
+}
+
+	.hor-menu>h1{
+		display: none;
+	}
+	
+	.hor-menu>ul{
+		overflow: auto;
+	}
+	
+		.hor-menu>ul>li{
+			float:left;
+		}
+		
+/* 두가지클래스가 함께 존재할때만 작동 */
+.hor-menu.first-pad-none>ul>li:first-child{	/* 슈도클래스 사용 */
+	padding-left: 0px;
+	background: none;
+}
+
+
+/* --------- header --------------------------- */
+#header{
+	height: 70px;
+}
+
+.main-menu{
+	font-family: 맑은고딕, 고딕, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	color: #000000;
+}
+
+	.main-menu>ul>li{
+		padding-left: 24px;
+		background: url("../images/bg-main-menu-vsp.png") no-repeat 13px center;
+	}
+
+/* 
+#main-menu>ul>li:first-child{	슈도클래스 사용
+	padding-left: 0px;
+	background: none;
+}
+ */
+
+/* 
+#main-menu>ul::after{
+	content: ".";
+	display: block;
+	height: 0px;
+	overflow: hidden;
+	clear:left;
+}
+*/
+/* ------------------------------------ */
+
+.member-menu{
+	font-family: 맑은고딕, 고딕, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+	.member-menu>ul>li{
+		padding-left:9px;
+		background: url("../images/bg-member-menu-sp.png") no-repeat 4px center;
+	}
+
+
+/* ------------------------------------ */
+#visual{
+	height: 171px;
+	/* background: #313131 url("../images/bg-visual.png") no-repeat center; */
+	border-top: #8CBA34 3px solid;
+}
+
+#body{
+	min-height: 300px;
+	border-top: #8CBA34 5px solid;
+	margin-top: 1px;
+	/* background: url("../images/bg-body.png") repeat-y center; */
+}
+
+
+#footer{
+	height: 100px;
+	background: #313131;
+}
+
+.root-container{
+	height: 100%;
+	min-height: inherit;
+	width: 960px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+
+#body>.root-container{
+	display:flex;
+	flex-direction: row;
+	background: url("../images/bg-body.png") repeat-y center;
+}
+
+#aside{
+	min-height: inherit;
+	min-width:205px;
+	background: url("../images/bg-aside-title.png") no-repeat top;
+	/* float:left; */
+}
+
+#main{
+	min-height: inherit;
+	min-width:755px;
+	/* float:left; */
+}
+
+#main{
+	height:inherit;
+	padding-left:30px;
+	padding-top:45px;
+	padding-bottom:40px;
+	width:720px;
+	box-sizing: border-box;
+}
+.clear-fix{
+	
+}
+
+.clear-fix::after{
+	content: "안녕하세요";
+	display: block;
+	clear: both;
+	height: 0px;
+	overflow: hidden;
+}
+/* 
+#main>section>h1{
+	border: 1px solid red;
+	width:100px;
+	height: 100px;
+	background: url("../images/logo.png") no-repeat left top;
+	background-attachment:local;	fixed: 스크린화면 기준으로 고정 // local: 지역내 문서에 고정 // scroll: 브라우저 지역
+	overflow:scroll; */
+}
