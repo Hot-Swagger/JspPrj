@@ -1,0 +1,16 @@
+<taglib>
+    <tlibversion>1.0</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>control</shortname>       
+    <uri>http://www.newlecture.com/jsp/tags/control</uri>
+    <info>제어구조 라이브러리</info>
+   
+    <tag>
+        <name>for</name>
+        <tagclass>
+            com.newlecture.jspprj.taglib.ForTag
+        </tagclass>
+        <info>반복문</info>
+    </tag>
+
+</taglib>

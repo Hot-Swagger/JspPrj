@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <style>
+        #stage {
+            width:200px;
+            height:200px;
+            background:gray;
+            border:2px solid black;
+            border-radius:5px;
+            
+            position:absolute;
+            left:200px;
+            top:200px;
+        }
+        #stage div,
+        #item-box li {
+            width:100px;
+            height:100px;
+            background:#ffd800;
+            border:2px solid black;
+            border-radius:5px;
+        }
+        #stage div h1,
+        #item-box li h1 {
+            width:100%;
+            height:20px;
+            text-align:center;
+            border-bottom:1px solid black;
+            background:black;
+            color:white;
+        }
+    </style>
+    <script src="../js/modernizr.js"></script>
+    <script>
+        // 방법3. 로드 이벤트에서 익명함수로 DND 설정하기
+        window.addEventListener("load", function () {            
+            var lis = document.querySelector("#item-box ul");
+            lis.addEventListener("dragstart", function () {
+                if (event.target instanceof HTMLLIElement) {
+                    // use the element's data-value="" attribute as the value to be moving:
+                    var data = { mydata: event.target.dataset.mydata, x:event.offsetX, y:event.offsetY};
+                    event.dataTransfer.setData("text/plain", JSON.stringify(data));
+                    event.dataTransfer.effectAllowed = "move"; // only allow moves
+                    
+                } else {
+                    event.preventDefault(); // don't allow selection to be dragged
+                }
+            });
+            var stage = document.querySelector("#stage");
+            stage.addEventListener("dragover", function () {
+                event.preventDefault();
+            });
+            stage.addEventListener("drop", function (event) {
+                var data = JSON.parse(event.dataTransfer.getData("text/plain"));
+
+		alert(data);
+                var left = event.offsetX - data.x;
+                var top = event.offsetY - data.y;
+                var item = document.createElement("div");                
+                var h1 = document.createElement("h1");
+                h1.textContent = data.mydata+"번";
+                item.appendChild(h1);
+                this.appendChild(item);
+                item.style.position = "absolute";
+                item.style.left = left+"px";
+                item.style.top = top+"px";
+                
+                
+            });
+            
+            //if (Modernizr.draganddrop) {
+            //    // Browser supports HTML5 DnD.
+            //    alert("ok");
+            //} else {
+            //    // Fallback to a library solution.
+            //    alert("no");
+            //}
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div id="stage"></div>
+        <div id="item-box">
+            <div id="cliper">
+                <ul>
+                    <li draggable="true" data-mydata="1"><h1>1번</h1></li>
+                    <li draggable="true" data-mydata="2"><h1>2번</h1></li>
+                    <li draggable="true" data-mydata="3"><h1>3번</h1></li>
+                    <li draggable="true" data-mydata="4"><h1>4번</h1></li>
+                    <li draggable="true" data-mydata="5"><h1>5번</h1></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 방법1. 각각의 항목에 이벤트를 추가할 수도 있지만
+        //var lis = document.querySelectorAll("#item-box li");
+        //lis[0].addEventListener("dragstart", dragStartHandler);
+        //lis[1].addEventListener("dragstart", dragStartHandler);
+        // 방법2. 그 부모 영역에 이벤트를 하나만 대입해줘도 된다. 단 HTMLLIELEMENT로 조건 검사를 해야만 한다.
+        //var lis = document.querySelector("#item-box ul");
+        //lis.addEventListener("dragstart", dragStartHandler);
+        //var internalDNDType = 'text/x-example'; // set this to something specific to your site
+        //function dragStartHandler(event) {
+        //    if (event.target instanceof HTMLLIElement) {
+        //        alert(event.target.dataset.mydata);
+        //        // use the element's data-value="" attribute as the value to be moving:
+        //        event.dataTransfer.setData(internalDNDType, event.target.dataset.mydata);
+        //        event.dataTransfer.effectAllowed = 'move'; // only allow moves
+        //    } else {
+        //        event.preventDefault(); // don't allow selection to be dragged
+        //    }
+        //}
+    </script>
+</body>
+</html>
