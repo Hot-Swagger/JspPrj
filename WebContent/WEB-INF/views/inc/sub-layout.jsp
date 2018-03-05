@@ -5,6 +5,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="my" uri="http://www.newlecture.com/jsp/tags/control" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.servletContext.contextPath}" />
+
 <!-- jstl (태그라이브러리 import)
 출력에 필요한 if / for문 등은 core lib에 포함
 출력데이터의 포맷 설정을 위한 formating lib
@@ -19,7 +22,7 @@
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
 <title></title>
 
-<link href="../../css/layout.css" type="text/css" rel="stylesheet" />
+<link href="${ctx}/student/css/layout.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<!-- header 부분 -->

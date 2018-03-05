@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.servletContext.contextPath}" />
+
 <footer id="footer">
 	<div class="content-container">
-		<h2 id="footer-logo"><img src="../../../images/logo-footer.png" alt="회사정보"></h2>
+		<h2 id="footer-logo"><img src="${ctx}/images/logo-footer.png" alt="회사정보"></h2>
 
 		<div id="company-info">
 			<dl>

@@ -3,6 +3,9 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+<!-- 타일즈는 *을 2개까지만 사용가능하다. -->
+<!-- 중첩경로의 경우 더 상세한 경로를 위쪽에 작성해야 무한루프에 빠지지 않는다. -->
+
   <definition name="student.community.answeris.*" template="/WEB-INF/views/inc/sub-layout.jsp">
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 	<put-attribute name="visual" value="/WEB-INF/views/student/inc/visual.jsp" />
@@ -10,4 +13,12 @@
     <put-attribute name="main" value="/WEB-INF/views/student/community/answeris/{1}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition>
+  <definition name="student.*.*" template="/WEB-INF/views/inc/sub-layout.jsp">
+    <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
+	<put-attribute name="visual" value="/WEB-INF/views/student/inc/visual.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/views/student/inc/aside.jsp" />
+    <put-attribute name="main" value="/WEB-INF/views/student/{1}/{2}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+  </definition>
+  
 </tiles-definitions>
