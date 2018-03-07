@@ -17,6 +17,7 @@ public class Answeris {
 	private String writerId;
 	private Date regDate;
 	private int hit;
+	private String attachedFile;
 	
 	public Answeris() {
 		
@@ -36,7 +37,8 @@ public class Answeris {
 			String howToFix,
 			String writerId,
 			Date regDate,
-			int hit
+			int hit,
+			String attachedFile
 			)
 	{
 		this.id = id;
@@ -53,6 +55,7 @@ public class Answeris {
 		this.writerId = writerId;
 		this.regDate = regDate;
 		this.hit = hit;
+		this.attachedFile = attachedFile;
 	}
 	
 	public Answeris(
@@ -195,5 +198,10 @@ public class Answeris {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	
+	public String getAttachedFile() {
+		return attachedFile;
+	}
+	public void setAttachedFile(String attachedFile) {
+		this.attachedFile = attachedFile;
+	}
 }

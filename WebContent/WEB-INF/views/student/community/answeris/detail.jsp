@@ -57,7 +57,12 @@
 								${answeris.errorMessage}
 							</td>
 						</tr>	
-												
+						<tr>
+							<th>첨부파일</th>
+							<td class="text-align-left text-indent text-strong text-orange" colspan="3">
+								<a download href="../../upload/${answeris.attachedFile}">${answeris.attachedFile}</a>
+							</td>
+						</tr>					
 						<tr>
 							<th colspan="4">오류 상황 설명</th>
 						</tr>

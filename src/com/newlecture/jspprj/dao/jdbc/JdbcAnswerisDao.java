@@ -32,10 +32,11 @@ public class JdbcAnswerisDao implements AnswerisDao {
 				+ "TRIED_TO_FIX, "
 				+ "REASON, "
 				+ "HOW_TO_FIX, "
-				+ "WRITER_ID) "
+				+ "WRITER_ID, "
+				+ "ATTACHED_FILE) "
 				+ "VALUES("
 				+ "(SELECT NVL(MAX(TO_NUMBER(ID)),0)+1 ID FROM ANSWERIS),"
-				+ "?,?,?,?,?,?,?,?,?,?,?)";
+				+ "?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		int result = 0;
 
@@ -57,6 +58,7 @@ public class JdbcAnswerisDao implements AnswerisDao {
 			st.setString(9, answeris.getReason());
 			st.setString(10, answeris.getHowToFix());
 			st.setString(11, answeris.getWriterId());
+			st.setString(12, answeris.getAttachedFile());
 			
 			result = st.executeUpdate();
 			// 쿼리실행(select) / 업데이트실행(반환되는 값이 없는 쿼리는 이걸로실행(update,delete,insert)
@@ -90,6 +92,7 @@ public class JdbcAnswerisDao implements AnswerisDao {
 				+ "REASON=?, "
 				+ "HOW_TO_FIX=?, "
 				+ "HIT=?) "
+				+ "ATTACHED_FILE=?, "
 				+ "WHERE ID=?";
 
 		int result = 0;
@@ -112,7 +115,8 @@ public class JdbcAnswerisDao implements AnswerisDao {
 			st.setString(9, answeris.getReason());
 			st.setString(10, answeris.getHowToFix());
 			st.setInt(11, answeris.getHit());
-			st.setString(12, answeris.getId());
+			st.setString(12, answeris.getAttachedFile());
+			st.setString(13, answeris.getId());
 			
 			result = st.executeUpdate();
 			// 쿼리실행(select) / 업데이트실행(반환되는 값이 없는 쿼리는 이걸로실행(update,delete,insert)
@@ -203,6 +207,7 @@ public class JdbcAnswerisDao implements AnswerisDao {
 				rs.getString("WRITER_ID"),
 				rs.getDate("REG_DATE"),
 				rs.getInt("HIT"),
+				rs.getString("ATTACHED_FILE"),
 				rs.getInt("COMMENT_COUNT")
 				);				
 				list.add(answeris);
@@ -255,6 +260,7 @@ public class JdbcAnswerisDao implements AnswerisDao {
 				rs.getString("WRITER_ID"),
 				rs.getDate("REG_DATE"),
 				rs.getInt("HIT"),
+				rs.getString("ATTACHED_FILE"),
 				rs.getInt("COMMENT_COUNT")
 				);
 			}

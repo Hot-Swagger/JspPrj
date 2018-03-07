@@ -12,7 +12,7 @@
 		<!-- ---------------------------<header>--------------------------------------- -->
 
 		<h1 id="logo">
-			<a href="${ctx}/index.jsp"> 
+			<a href="${ctx}/index"> 
 				<img src="${ctx}/images/logo.png" alt="뉴렉처 온라인" />
 				
 			</a>
@@ -62,7 +62,7 @@
 
 						
 
-						<li><a href="/member/agree">회원가입</a></li>
+						<li><a href="${ctx}/member/agree">회원가입</a></li>
 					</ul>
 				</nav>
 

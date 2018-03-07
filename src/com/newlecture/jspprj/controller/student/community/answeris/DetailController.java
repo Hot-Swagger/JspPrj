@@ -22,24 +22,28 @@ import com.newlecture.jspprj.entity.AnswerisView;
 @WebServlet("/student/community/answeris/detail")
 public class DetailController extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String id = request.getParameter("id");
 
 		AnswerisDao answerisDao = new JdbcAnswerisDao();
 		AnswerisView answeris = answerisDao.get(id);
-		
-		//주의!, request로 값을 넘겨줄때 객체타입은 오브젝트 타입으로 반환되므로 반드시 형변환하여 사용해야한다.
+
+		// 주의!, request로 값을 넘겨줄때 객체타입은 오브젝트 타입으로 반환되므로 반드시 형변환하여 사용해야한다.
 		request.setAttribute("answeris", answeris);
-		
-		//다음 서블릿으로 포워드 하는 방식
-		/*RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/student/community/answeris/detail.jsp");
-		dispatcher.forward(request, response);*/
-		
+
+		// 다음 서블릿으로 포워드 하는 방식
+		/*
+		 * RequestDispatcher dispatcher = request.getRequestDispatcher(
+		 * "/WEB-INF/views/student/community/answeris/detail.jsp");
+		 * dispatcher.forward(request, response);
+		 */
+
 		ApplicationContext applicationContext = ServletUtil
-	            .getApplicationContext(request.getSession().getServletContext());
-	      TilesContainer container = TilesAccess.getContainer(applicationContext);
-	      ServletRequest servletRequest = new ServletRequest(applicationContext, request, response);
-	      container.render("student.community.answeris.detail", servletRequest);
+				.getApplicationContext(request.getSession().getServletContext());
+		TilesContainer container = TilesAccess.getContainer(applicationContext);
+		ServletRequest servletRequest = new ServletRequest(applicationContext, request, response);
+		container.render("student.community.answeris.detail", servletRequest);
 	}
 }
