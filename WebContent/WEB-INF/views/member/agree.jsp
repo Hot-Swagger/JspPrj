@@ -176,7 +176,7 @@
             return;
         }
         
-        location.h	ref = "join";
+        location.href = "join";
     };
 });
 </script>

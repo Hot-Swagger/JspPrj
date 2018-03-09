@@ -99,6 +99,7 @@
 			</div>
 			
 			<div class="margin-top text-align-right">
+				<span class="btn-text btn-default btn-clone1" >복제1</span>
 				<a href="reg" class="btn-text btn-default">글쓰기</a>
 			</div>
 
@@ -132,3 +133,23 @@
 	
 			</div>
 		</main>
+
+<script>
+	window.addEventListener("load",function(){
+		var tbody = document.querySelector(".table > tbody");
+		var origin = tbody.querySelector("tr:first-child");
+		var cloneButton1 = document.querySelector(".btn-clone1");
+
+		cloneButton1.onclick = function(){
+			var answerises = [{id:1,title:3},{id:"2",title:"4"}]
+			//var answerises = ["title1","title2"]
+			for(var i=0; i<answerises.length; i++){
+				var copy = origin.cloneNode(true);
+				var titleTd = copy.querySelector("td:nth-child(1)");
+				titleTd.textContent = answerises[i].title;
+				tbody.appendChild(copy);
+			}
+		};
+	});
+
+</script>

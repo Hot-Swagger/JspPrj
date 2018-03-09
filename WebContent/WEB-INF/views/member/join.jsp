@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.servletContext.contextPath}" />
 
 <main>
       <h2 class="main title">회원가입 폼</h2>
@@ -94,3 +96,109 @@
          </fieldset>
       </form>
    </main>
+
+   <script>
+       window.addEventListener("load",function(){
+           var idCheckButton = document.querySelector("#id-check-button");
+           var idInput = document.querySelector("input[name='id']");
+           var submitButton = document.querySelector("#submit-Button");
+           var photoButton = document.querySelector("#photo-button");
+           var fileInput = document.querySelector("input[name='file']");
+
+           var idChecked = false;
+           // 동기 방식
+           /* 
+           idCheckButton.onclick = function(){
+        	   var memberId = idInput.value;
+				if (memberId == ""){
+                    alert("아이디를 입력하지 않았습니다.");
+                    return;
+                }
+                var request = new XMLHttpRequest();
+                request.open("GET","idcheck?id=" + memberId,false); //  포스트방식, 요청페이지url, true(비동기) / false(동기)
+                request.send();
+
+                var member = JSON.parse(request.responseText);
+                
+                if(member == null)
+                    alert("사용할 수 있는 아이디 입니다.");
+                else
+                    alert("이미 " + member.name + " 님이 사용중 입니다.");
+			};
+			 */
+			
+			 //비동기 방식
+			idCheckButton.onclick = function(){
+                var memberId = idInput.value;
+                if (memberId == ""){
+                    alert("아이디를 입력하지 않았습니다.");
+                    return;
+                }
+                
+                var request = new XMLHttpRequest();
+                
+                request.onreadystatechange = function(){
+
+                    if(request.readyState != 4)	//	4번상태: 페이지 로딩이 완료 되지 않으면 리턴
+                        return;
+
+                    var member = JSON.parse(request.responseText);
+                    if(member == null){
+                        alert("사용할 수 있는 아이디 입니다.");
+                        idChecked = true;
+                    }
+                    else{
+                        alert("이미 " + member.name + " 님이 사용중 입니다.");
+                        idChecked = false;
+                    }
+                };
+                
+                request.open("GET","idcheck?id=" + memberId,true); //  포스트방식, 요청페이지url, true(비동기) / false(동기)
+                request.send();
+    
+			};
+			
+            idInput.onchange = function(){
+                idChecked = false;
+            }
+
+			submitButton.onclick = function(e) {
+				if (!idChecked) {
+					alert("아이디 중복체크를 해주세요.");
+					e.preventDefault();
+					return;
+				}
+            };
+
+            photoButton.onclick = function(e){
+                var event = new MouseEvent("click",{
+                    view:window,
+                    bubbles:true,
+                    cancelable:true
+                });
+                fileInput.dispatchEvent(event);
+            };
+            
+            fileInput.onchange = function(e){
+                var files = fileInput.files;
+                
+                var fileType = files[0].type;
+
+                var fileTypeSplit = fileType.split("/");
+                fileTypeSplit[0]
+
+                // alert(
+                // 	"name: " + files[0].name + ", size: " + files[0].size + ", type: " + files[0].type		
+                // );
+            };
+            // photoButton.addEventListener("click", function(e){
+            //     var event = new MouseEvent("click",{
+            //         view:window,
+            //         bubbles:true,
+            //         cancelable:true
+            //     });
+            //     fileInput.dispatchEvent(event);
+            // });
+
+		});
+			</script>

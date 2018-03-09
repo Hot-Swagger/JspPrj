@@ -1,4 +1,4 @@
-package com.newlecture.jspprj.controller.root;
+package com.newlecture.jspprj.controller.home;
 
 import java.io.IOException;
 
