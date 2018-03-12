@@ -104,6 +104,7 @@
            var submitButton = document.querySelector("#submit-Button");
            var photoButton = document.querySelector("#photo-button");
            var fileInput = document.querySelector("input[name='file']");
+           var photo = document.querySelector("#photo");
 
            var idChecked = false;
            // 동기 방식
@@ -180,13 +181,43 @@
             };
             
             fileInput.onchange = function(e){
-                var files = fileInput.files;
+                var file = fileInput.files[0];
+
+                var info = "naeme:"+file.name;
+                info += " size:"+file.size;
+                info += " type:"+file.type;
                 
-                var fileType = files[0].type;
+                var fileType = file.type.split("/");
 
-                var fileTypeSplit = fileType.split("/");
-                fileTypeSplit[0]
+                if(fileType[0] != "image")
+					alert("지원되는 이미지 파일 형식이 아닙니다.");
 
+                var reader = new FileReader();
+                //읽어들인 내용이 완료 되었을 때 실행되어야함 (비동기 방식이기 때문) -> onload 이벤트를 활용한다
+                reader.onload = function(evt){
+                    photo.src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+
+
+                // data1 = url encoded
+                // var data = "name=newlec&type=a"; // name=newlec*type=a
+
+                // data2 = multipart
+                // var data = new FormData();
+                // data.append("file",files[0]);   //  변수1: key값 , 변수2: data
+
+                // var request = new XMLHttpRequest(); //  ver 1.0 -> 2.0 신버젼에서는 onload메서드를 사용해서 데이터 로드 상태를 알수 있도록 변경됨
+                // request.onload = function(){
+
+                // };
+				
+                // request.open('POST',url,true);
+                // request.send(data);
+
+
+
+					
                 // alert(
                 // 	"name: " + files[0].name + ", size: " + files[0].size + ", type: " + files[0].type		
                 // );

@@ -56,6 +56,27 @@
 						</tr>
 					</thead>
 					<tbody>
+					
+						<tr id="template" class="hidden">
+							<td class="text-align-left text-indent text-ellipsis"><a href="detail?id="></a></td>
+							<td>
+							</td>
+							<td class="text-ellipsis"></td>
+							<td>
+							</td>
+						</tr>
+						
+						<template id="row">
+						<tr>
+							<td class="text-align-left text-indent text-ellipsis"><a href="detail?id="></a></td>
+							<td>
+							</td>
+							<td class="text-ellipsis"></td>
+							<td>
+							</td>
+						</tr>
+						</template>
+					
 					<%-- <%for(AnswerisView an : list){ %> --%>
 					<c:forEach var="ai" items="${list}">
 						<tr>
@@ -141,14 +162,32 @@
 		var cloneButton1 = document.querySelector(".btn-clone1");
 
 		cloneButton1.onclick = function(){
+			
+			
+			
+			//템플릿태그 사용한 클론방법
 			var answerises = [{id:1,title:3},{id:"2",title:"4"}]
+			if ('content' in document.createElement('template')) {
+				// 템플릿태그를 지원하는 브라우져인지 확인
+				var t = document.querySelector('#row'),
+				  tds = t.content.querySelectorAll("td");
+				  tds[0].textContent = answerises[0].id;
+				  tds[2].textContent = answerises[0].title;
+				  
+				  var clone = document.importNode(t.content, true);
+				tbody.appendChild(clone);
+			}
+			
+			
+			// 이전버젼 클론방법
+			/* var answerises = [{id:1,title:3},{id:"2",title:"4"}]
 			//var answerises = ["title1","title2"]
 			for(var i=0; i<answerises.length; i++){
 				var copy = origin.cloneNode(true);
 				var titleTd = copy.querySelector("td:nth-child(1)");
 				titleTd.textContent = answerises[i].title;
-				tbody.appendChild(copy);
-			}
+				tbody.appendChild(copy); 
+			}*/
 		};
 	});
 

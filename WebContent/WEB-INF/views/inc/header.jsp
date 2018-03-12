@@ -48,16 +48,21 @@
 					<h1 class="hidden">회원메뉴</h1>
 					<ul>
 						<li><a href="${ctx}/index">HOME</a></li>
+						<c:if test="${!empty sessionScope.id}">
+						<li><a href="${ctx}/member/logout">로그아웃</a></li>
+						</c:if>
+						<c:if test="${empty sessionScope.id}">
+						<li><a href="${ctx}/member/login">로그인</a></li>
+						</c:if>
 						
 						
-						
-							<li>
+							<%-- <li>
 								<form action="${ctx}/logout" method="post">
 									<input type="hidden" name="" value="" />
 									<input type="submit" value="로그아웃" style="border:none;background: none;vertical-align: middle;font-size: 10px;color:#979797;font-weight: bold;" />
 									
 								</form>								
-							</li>
+							</li> --%>
 						
 
 						
