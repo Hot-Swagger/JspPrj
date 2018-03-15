@@ -59,7 +59,12 @@ public class LoginController extends HttpServlet{
 			out.println("<script>alert('아이디 또는 비밀번호가 올바르지 않습니다.'); location.href = 'login'</script>");
 		else {
 			request.getSession().setAttribute("id", id_);
-			response.sendRedirect("../index");
+			
+			String returnUrl = request.getParameter("returnurl");
+			if(returnUrl != null)
+				response.sendRedirect(returnUrl);
+			else
+				response.sendRedirect("../index");
 		}
 			
 	}
